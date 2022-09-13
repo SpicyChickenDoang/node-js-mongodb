@@ -11,6 +11,7 @@ app.use(express.json());
 
 const notes = require('./homey/notes-api.js');
 const person = require('./homey/person-api.js');
+const hero = [];
 //MIDDLEWARE
 // app.use('/', ()=>{
 //     // this app.use will execute when app.post is called
