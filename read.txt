@@ -1,0 +1,4 @@
+1. npm init
+2. npm install all dependencies (express, nodemon, dotenv, mongoose/mongodb)
+3. created server.js, and app.listen
+4. 
