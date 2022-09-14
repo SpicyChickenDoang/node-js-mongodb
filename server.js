@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
-require('./models/Notes');
+
 
 // the middleware below is used mostly for POST/PUT so that it
 // will parse/change incoming req.body to the needed json format
