@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express();
-const router = express.Router();
+// const express = require('express');
+// const app = express();
+// const router = express.Router();
 
 const Notes = require('../models/Notes');
-app.use(express.json())
+// app.use(express.json())
 
 // get all Notes
-router.get('/find', async (req, res) => {
+exports.getAllNotes = (async (req, res) => {
 
     try {
         const findNotes = await Notes.find();
@@ -14,9 +14,10 @@ router.get('/find', async (req, res) => {
     } catch (error) {
         res.send(error.message);
     }
+
 });
 
-router.post('/post', async (req, res) => {
+exports.postNotes = (async (req, res) => {
 
     const postNotes = new Notes({
         // title: 'title',
@@ -24,6 +25,7 @@ router.post('/post', async (req, res) => {
         title: req.body.title,
         description: req.body.description
     })
+
 
     try {
         const savedNotes = await postNotes.save();
@@ -34,10 +36,42 @@ router.post('/post', async (req, res) => {
 
 })
 
-// router.put();
+//patch
+exports.editNotes = (async (req, res) => {
+    const editNote = ({
+        title: req.body.title,
+        description: req.body.description,
+    })
 
-// router.get();
+    console.log(req.params.id);
+    console.log(editNote);
+    // Notes.findByIdAndUpdate()
 
-// router.delete();
+    // try {
+    //     const updateNotes = await editNote.findByIdAndUpdate(req.params.id, editNote);
+    //     res.send(updateNotes)
+    // } catch (error) {
+    //     console.log(error.message);
+    // }
+})
 
-module.exports = router;
+// put
+exports.editNotesPuts = (async (req, res) => {
+    const editNote = new Notes({
+        title: req.body.title,
+        description: req.body.description,
+    })
+
+    console.log(req.params.id);
+    console.log(editNote);
+    
+})
+
+exports.getByIdNotes = (async (req, res) => {
+    console.log('get by id notes');
+})
+
+exports.deleteById = (async (req, res) => {
+    console.log('delete by id');
+})
+

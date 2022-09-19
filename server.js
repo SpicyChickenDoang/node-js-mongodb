@@ -9,9 +9,6 @@ const mongoose = require('mongoose');
 // alternatively we can use 'npm install body-parser' and then import them
 app.use(express.json());
 
-const notes = require('./homey/notes-api.js');
-const person = require('./homey/person-api.js');
-const hero = [];
 //MIDDLEWARE
 // app.use('/', ()=>{
 //     // this app.use will execute when app.post is called
@@ -19,13 +16,13 @@ const hero = [];
 //     console.log('this is the middleware');
 // });
 
-app.use('/notes', notes);
-app.use('/person', person);
+const routes = require('./routes/routes');
+app.use('/', routes)
 
 
 // connect to MongoDB
 mongoose.connect(process.env.DB_CONNECTION, () => {
-    console.log('connected to MongoDB!');
+    console.log('connected to MongoDB!!');
 });
 
 

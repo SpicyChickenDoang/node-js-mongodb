@@ -17,5 +17,5 @@ const noteSchema = mongoose.Schema({
 });
 
 // this line is necessary
-// everytime we wanna use it we call 'Posts'
+// everytime we wanna use it we call 'Notes'
 module.exports = mongoose.model('Notes', noteSchema);
