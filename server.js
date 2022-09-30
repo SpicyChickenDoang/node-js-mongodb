@@ -17,15 +17,24 @@ app.use(express.json());
 // });
 
 const routes = require('./routes/routes');
-app.use('/', routes)
+app.use('/', routes, (req, res, next) => {
+    console.log(res.result);
+    return 0;
+})
+
+
 
 
 // connect to MongoDB
+var start = new Date().getTime();
 mongoose.connect(process.env.DB_CONNECTION, () => {
     console.log('connected to MongoDB!!');
+    var stop = new Date().getTime();
+
+    console.log('Time to connect: ', (stop - start) / 1000);
 });
 
 
-app.listen(8000, () => {
-    console.log('Server is running in port 8000');
+app.listen(8080, () => {
+    console.log('Server is running in port 8080');
 });

@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 // MongoDB Schema
 const noteSchema = mongoose.Schema({
+    userId: {
+        type: String
+    },
     title: {
         type: String,
         required: true
@@ -9,12 +12,8 @@ const noteSchema = mongoose.Schema({
     description: {
         type: String,
         required: true
-    },
-    date: {
-        type: Date,
-        default: Date.now()
     }
-});
+},{timestamps: true});
 
 // this line is necessary
 // everytime we wanna use it we call 'Notes'

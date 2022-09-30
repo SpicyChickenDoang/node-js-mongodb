@@ -6,15 +6,17 @@ const personSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    
-    age: {
-        type: Number,
+    email: {
+        type: String,
         required: true
     },
+    password: {
+        type: String,
+        required: true,
 
-    job: ['teacher', 'banker', 'mechanic']
-});
+    }
+}, {timestamps: true});
 
 // this line is necessary
-// everytime we wanna use it we call 'Posts'
+// everytime we wanna use it we call 'Person'
 module.exports = mongoose.model('Person', personSchema);

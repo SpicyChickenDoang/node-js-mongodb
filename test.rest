@@ -1,0 +1,52 @@
+GET http://localhost:8080/notes
+
+###
+GET http://localhost:8080/notes/63346574d364ada37ccd5006
+
+###
+
+POST http://localhost:8080/notes/post
+Content-Type: application/json
+
+{
+    "title": "28 September Log",
+    "description": "start of a new dawn"
+}
+
+###
+
+PATCH  http://localhost:8080/notes/edit/633042cb1bf94b78e6a43ae5
+Content-Type: application/json
+
+{
+    "title": "New True",
+    "description": "awdaawd"
+}
+
+
+
+###
+
+GET http://localhost:8080/person
+
+
+###
+
+POST http://localhost:8080/person/post
+Content-Type: application/json
+
+{
+    "name": "Harry Maguire the 2nd",
+    "job": "Man Utd Captain the 2nd"
+}
+
+###
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+    "email": "totest@gmail.com",
+    "password": "totest123"
+}
+
+###
