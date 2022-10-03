@@ -1,11 +1,11 @@
 const bcrypt = require('bcrypt')
 
-function hashPerson(req, res, next){
+async function hashPersonPassword(req, res, next){
+      const salt = await bcrypt.genSalt()
       const password = req.body.password
-      const hashedPassword = bcrypt.hashSync(password, 64)
-      console.log(hashedPassword);
-      next()
-    
+      const hashedPassword = await bcrypt.hash(password, salt)
+      req.body.password = hashedPassword
+      next()   
 }
 
-module.exports = {hashPerson}
+module.exports = {hashPersonPassword}

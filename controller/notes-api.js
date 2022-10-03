@@ -16,7 +16,7 @@ exports.getAllNotes = (async (req, res, next) => {
         console.log(error.message);
     }
 });
-const userId1 = 'this is the user id'
+const userId1 = 'this user id is temporary'
 //post
 exports.postNotes = (async (req, res) => {
 

@@ -1,6 +1,6 @@
 // const express = require('express');
 // const app = express();
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 const Person = require('../models/Person');
 
@@ -12,7 +12,7 @@ exports.getAllPerson = (async (req, res) => {
     try {
         const result = await Person.find()
         res.result = result
-        res.send(result)
+        res.json(result)
 
     } catch (error) {
         res.send(error.message)
@@ -37,13 +37,14 @@ exports.getByIdPerson = (async (req, res) => {
 exports.postPerson = (async (req, res) => {
 
     //const salt = await bcrypt.genSalt()
-    const password = req.body.password
-    const hashedPassword = await bcrypt.hash(password, 5)
+    // const password = req.body.password
+    // const hashedPassword = await bcrypt.hash(password, 5)
 
     const postPerson = new Person({
         name: req.body.name,
         email: req.body.email,
-        password: hashedPassword
+        //password: hashedPassword
+        password: req.body.password
     })
 
     try {

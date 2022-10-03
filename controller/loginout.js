@@ -3,24 +3,23 @@ const Person = require('../models/Person')
 
 exports.login = (async (req, res) => {
     //compare email and password
+
     const email = req.body.email
     let found = ''
     const password = req.body.password
 
-    if(!req.body.email){
-        return res.send('email req')
-    }
+    if (!req.body.email || !req.body.password) return res.send('Email/Password Required')
+    
 
     try {
         found = await Person.findOne({ email: email })
+        if (email == found.email && bcrypt.compareSync(password, found.password)) {
+            res.send('logged in')
+        }
     } catch (error) {
-        console.log(error.message);
+        res.send('Wrong Email/Password')
     }
 
-    if (email == found.email && await bcrypt.compare(password, found.password)) {
-        res.send('logged in')
-    } else {
-        res.send('Wrong email/password')
-    }
+
 
 })

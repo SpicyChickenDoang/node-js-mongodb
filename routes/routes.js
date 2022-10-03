@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-//const hashPerson = require('../hashPerson')
+const {hashPersonPassword} = require('../controller/hashPerson')
 
 const loginoutController = require('../controller/loginout.js')
 const notesController = require('../controller/notes-api.js');
@@ -19,7 +19,7 @@ router.delete('/notes/deleteAll', notesController.deleteAll)
 
 
 router.get('/person', personController.getAllPerson)
-router.post('/person/post', personController.postPerson)
+router.post('/person/post', hashPersonPassword, personController.postPerson)
 router.get('/person/:id', personController.getByIdPerson)
 router.patch('/person/edit/:id', personController.editPerson)
 router.delete('/person/delete/:id', personController.findByIdAndDelete)

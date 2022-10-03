@@ -8,7 +8,16 @@ const personSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        // unique: [true, "email is already taken"],
+        unique: true,
+        lowercase: true,
+        validate: {
+            validator: function(v){
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+            },
+            message: '{VALUE} is not an email'
+        }
     },
     password: {
         type: String,
