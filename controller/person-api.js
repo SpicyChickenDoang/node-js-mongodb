@@ -26,7 +26,6 @@ exports.getByIdPerson = (async (req, res) => {
     try {
         const found = await Person.findById(person_id)
         if (!found) return res.send('No person found')
-        console.log(found.password);
         res.send(found)
     } catch (error) {
         res.send(error.message)
@@ -50,7 +49,6 @@ exports.postPerson = (async (req, res) => {
     try {
         const savedPerson = await postPerson.save();
         res.send(savedPerson);
-        console.log(savedPerson);
     } catch (error) {
         res.send(error.message)
     }
@@ -78,7 +76,6 @@ exports.editPerson = (async (req, res) => {
 
     try {
         const editedResult = await Person.findByIdAndUpdate(person_id, editPerson, { new: true })
-        console.log(editedResult);
         res.send(editedResult)
 
     } catch (error) {

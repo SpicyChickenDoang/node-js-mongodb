@@ -1,4 +1,3 @@
-const { urlencoded } = require('express');
 const express = require('express');
 const app = express();
 require('dotenv').config();
@@ -9,7 +8,7 @@ const mongoose = require('mongoose');
 // will parse/change incoming req.body to the needed json format
 // alternatively we can use 'npm install body-parser' and then import them
 app.use(express.json());
-app.use(urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 
 //MIDDLEWARE
 // app.use('/', ()=>{

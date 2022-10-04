@@ -8,10 +8,9 @@ app.use(express.json())
 
 // get all Notes
 exports.getAllNotes = (async (req, res, next) => {
-
     try {
         const result = await Notes.find()
-        res.send(result)
+        res.status(200).json(result)
     } catch (error) {
         console.log(error.message);
     }
@@ -29,8 +28,7 @@ exports.postNotes = (async (req, res) => {
 
     try {
         const savedNotes = await postNotes.save();
-        res.send(savedNotes);
-        console.log(savedNotes);
+        res.status(201).json(savedNotes);
     } catch (error) {
         res.send(error.message)
     }
@@ -48,10 +46,9 @@ exports.editNotes = (async (req, res) => {
 
     try {
         const updatedNotes = await Notes.findByIdAndUpdate(notes_id, editNote, { new: true })
-        res.send(updatedNotes)
-        console.log(updatedNotes);
+        res.status(202).json(updatedNotes)
     } catch (error) {
-        console.log(error.message);
+        res.send(error.message);
     }
 
 })
@@ -62,24 +59,26 @@ exports.getByIdNotes = (async (req, res) => {
     try {
         const found = await Notes.findById(notes_id)
         if (!found) return res.send('Notes is not found')
-        res.send(found)
+        res.status(202).json(found)
     } catch (error) {
         res.send(error.message)
     }
 })
 
+//admin and person
 exports.findByIdAndDelete = (async (req, res) => {
     const notes_id = req.params.id
 
     try {
         const deleted = await Notes.findByIdAndDelete(notes_id)
-        res.send(`This note is deleted "${deleted.title}"`)
+        res.status(202).json(`This note is deleted "${deleted.title}"`)
     } catch (error) {
 
     }
 
 })
 
+//admin only
 exports.deleteAll = (async (req, res) => {
     
     try {
