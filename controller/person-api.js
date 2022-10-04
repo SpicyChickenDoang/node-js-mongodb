@@ -19,6 +19,19 @@ exports.getAllPerson = (async (req, res) => {
     }
 });
 
+exports.getAllPersonAuth = (async (req, res) => {
+    console.log(req.person);
+    
+    try {
+        const result = await Person.find()
+        res.result = result
+        res.json(result)
+
+    } catch (error) {
+        res.send(error.message)
+    }
+});
+
 //get by id
 exports.getByIdPerson = (async (req, res) => {
     const person_id = req.params.id

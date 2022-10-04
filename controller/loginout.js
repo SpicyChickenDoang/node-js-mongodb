@@ -14,19 +14,23 @@ exports.login = (async (req, res) => {
 
     try {
         found = await Person.findOne({ email: personEmail })
-        if (!(await bcrypt.compare(password, found.password))) {
-            res.status(401).send('Wrong Password')
-        } else {
-            res.json('logged in well done')
-            //jwt signing
-
+        if (!await bcrypt.compare(password, found.password)) {
+            return res.status(401).send('Wrong Password')
         }
     } catch (error) {
         //res.json(error.message)
-        res.status(404).json('User Not Found')
+        return res.status(404).json('User Not Found')
     }
 
+    found = {
+        email: found.email,
+        password: found.password,
+    }
 
-    
-
+    const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '15m'})
+    res.json({accessToken: personToken})
 })
+
+exports.logout = (req, res) => {
+    // basically what we want is to disable personToken
+}
