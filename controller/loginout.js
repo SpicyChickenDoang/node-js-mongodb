@@ -27,7 +27,8 @@ exports.login = (async (req, res) => {
         password: found.password,
     }
 
-    const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '15m'})
+    const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '1h'})
+    // const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '5s'})
     res.json({accessToken: personToken})
 })
 

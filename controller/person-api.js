@@ -61,9 +61,9 @@ exports.postPerson = (async (req, res) => {
 
     try {
         const savedPerson = await postPerson.save();
-        res.send(savedPerson);
+        res.json(savedPerson);
     } catch (error) {
-        res.send(error.message)
+        res.json(`${error.keyValue.email} already exist`)
     }
 
 })

@@ -10,7 +10,7 @@ const personSchema = mongoose.Schema({
         type: String,
         required: true,
         // unique: [true, "email is already taken"],
-        unique: true,
+        unique: [true, 'email exisst'],
         lowercase: true,
         validate: {
             validator: function(v){

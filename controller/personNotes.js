@@ -30,8 +30,10 @@ exports.viewNotesByPersonId = async (req, res) => {
     let fullNotes = []
 
     try {
-        resultNotes = await Notes.find({ email: findEmail })
-        resultPerson = await Person.find({ email: findEmail })
+        resultNotes = await Notes.find({ userEmail: findEmail })
+        resultPerson = await Person.findOne({ email: findEmail })
+        // resultPerson = await Person.find({ email: findEmail })
+        console.log(resultPerson);
     } catch (error) {
         res.send(error.message)
     }
@@ -46,11 +48,12 @@ exports.viewNotesByPersonId = async (req, res) => {
     }
 
     const obj = {
-        userName: resultPerson[0].name,
+        userName: resultPerson.name,
         userEmail: findEmail,
         notes: fullNotes
     }
 
+    console.table(obj)
     res.status(200).json(obj)
 
 }

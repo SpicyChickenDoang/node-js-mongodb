@@ -9,7 +9,7 @@ async function hashPersonPassword(req, res, next) {
       next()
 }
 
-function authToken(req, res, next) {
+async function authToken(req, res, next) {
       // BEARER Token
       const authHeader = req.headers['authorization']
       /*
@@ -24,16 +24,17 @@ function authToken(req, res, next) {
       const token = authHeader.split(' ')[1]
 
       jwt.verify(token, process.env.ACCESS_TOKEN_KEY, (error, person) => {
-            if (error) return res.status(403).send('No Access')
-            console.log(person);
+            if (error) {
+                  console.log(error.message);
+                  return res.status(403).send('No Access')
+            }
             req.person = person
-            
+            next()
       })
 
-      next()
 }
 
-async function refreshToken(req, res, next){
+async function refreshToken(req, res, next) {
       //do wee need a refresh token?
 }
 

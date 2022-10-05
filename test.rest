@@ -32,12 +32,13 @@ GET   http://localhost:8080/person
 
 ###
 
-POST http://localhost:8080/person/post
+POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-    "name": "Harry Maguire the 2nd",
-    "job": "Man Utd Captain the 2nd"
+    "name": "Harrison Ford",
+    "email": "harrison@gmail.com",
+    "password": "uniqlo"
 }
 
 ###
@@ -51,7 +52,20 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8080/postNotesById
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcnJpc29uQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJGM4ZHc2Z2tpNUdZdlFTUkN1RnY5Ny5zbFQwdU44MDF5RzdtZm14Q1RTZ2FXWFFtRHoxR0syIiwiaWF0IjoxNjY0OTg5OTY2LCJleHAiOjE2NjQ5OTA4NjZ9.iOgdlG_CGjcs3xMoSq3Jx8yMdZFDy6jJv_6NAL48jc8
+Content-Type: application/json
+
+{
+    "title": "The future of Ford vs Tesla",
+    "description": "the future is still a long way to go, there's no need to act upon it"
+}
+
+
+###
+
 GET http://localhost:8080/viewNotesById
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxldGRvdXNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka0pMVWhZbGxjcFdmTmRwZm5DV2RXLjBURm9ZQzhzbFhTcHhYMkd0dzhBclVGZmNPbmZPVXEiLCJpYXQiOjE2NjQ5NjIyODEsImV4cCI6MTY2NDk2MzE4MX0.vUnkbiStrTsVCKnYCWKpY90Ks4lrBcvf9a1DgknD6hs
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxldGRvdXNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka0pMVWhZbGxjcFdmTmRwZm5DV2RXLjBURm9ZQzhzbFhTcHhYMkd0dzhBclVGZmNPbmZPVXEiLCJpYXQiOjE2NjQ5OTE0MTcsImV4cCI6MTY2NDk5NTAxN30.wN0EZt_9Hl0vjWa-etVlGPE9S_GXmehgSbzHwRZTDvI
+
 
 //most testing are done using postman, so this file isn't always up to date
