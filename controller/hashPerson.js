@@ -12,9 +12,8 @@ async function hashPersonPassword(req, res, next) {
 function authToken(req, res, next) {
       // BEARER Token
       const authHeader = req.headers['authorization']
-      console.log(req);
       /*
-      the line below means if authHeader is true, then set the value 
+      the code below means if authHeader is true, then set the value 
       to authHeader.split(' ')[1]
       IF authHeader is false, set to undefined
       */
@@ -26,6 +25,7 @@ function authToken(req, res, next) {
 
       jwt.verify(token, process.env.ACCESS_TOKEN_KEY, (error, person) => {
             if (error) return res.status(403).send('No Access')
+            console.log(person);
             req.person = person
             
       })

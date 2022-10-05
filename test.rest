@@ -51,4 +51,7 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:8080/viewNotesById
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxldGRvdXNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka0pMVWhZbGxjcFdmTmRwZm5DV2RXLjBURm9ZQzhzbFhTcHhYMkd0dzhBclVGZmNPbmZPVXEiLCJpYXQiOjE2NjQ5NjIyODEsImV4cCI6MTY2NDk2MzE4MX0.vUnkbiStrTsVCKnYCWKpY90Ks4lrBcvf9a1DgknD6hs
+
 //most testing are done using postman, so this file isn't always up to date
