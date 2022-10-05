@@ -1,6 +1,6 @@
 # nodejs-mongodb-jwt
 ## API using nodeJS, express, bcrypt. Using MongoDB as the database and JWT for authorization
-
+s
 $ npm install 
 to install all dependencies
 
