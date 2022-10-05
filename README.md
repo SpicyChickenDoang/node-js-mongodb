@@ -1,6 +1,6 @@
 # nodejs-mongodb-jwt
 ## API using nodeJS, express, bcrypt. Using MongoDB as the database and JWT for authorization
-$ npm install 
+$ npm install
 to install all dependencies
 
 npm install dotenv and add .env add the root folder of your project
