@@ -4,7 +4,7 @@
 $ npm install
 to install all dependencies
 
-Add .env add the root folder of your project
+Add .env file to the root folder of your project
 and then copy the 'DB_CONNECTION' into your .env file and use your own credentials
 
 DB_CONNECTION=mongodb+srv://<'username'>:<'password'>@atlascluster.cxj27hm.mongodb.net/<database_name>
