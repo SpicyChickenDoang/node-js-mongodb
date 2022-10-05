@@ -1,5 +1,5 @@
 # node-js-mongodb
-RestAPI using nodeJS and express. Using MongoDB as the database and JWT for authorization
+RestAPI using nodeJS, express, bcrypt. Using MongoDB as the database and JWT for authorization
 
 $ npm install to install all dependencies
 
@@ -8,5 +8,5 @@ and then copy the 'DB_CONNECTION' into your .env file and use your own credentia
 
 DB_CONNECTION=mongodb+srv://<'username'>:<'password'>@atlascluster.cxj27hm.mongodb.net/<database_name>
 
-copy 
+ACCESS_TOKEN_KEY=whatever_key_you_want
 
