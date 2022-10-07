@@ -1,7 +1,11 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-async function hashPersonPassword(req, res, next) {
+async function hashUserPassword(req, res, next) {
+
+      if (!req.body.password || req.body.password.includes(" "))
+            return res.json('Require Password/Password contains spaces')
+
       const salt = await bcrypt.genSalt()
       const password = req.body.password
       const hashedPassword = await bcrypt.hash(password, salt)
@@ -23,12 +27,13 @@ async function authToken(req, res, next) {
       if (!authHeader) return res.send('no good token')
       const token = authHeader.split(' ')[1]
 
-      jwt.verify(token, process.env.ACCESS_TOKEN_KEY, (error, person) => {
+      jwt.verify(token, process.env.ACCESS_TOKEN_KEY, (error, user) => {
             if (error) {
                   console.log(error.message);
                   return res.status(403).send('No Access')
             }
-            req.person = person
+            
+            req.user = user
             next()
       })
 
@@ -38,4 +43,4 @@ async function refreshToken(req, res, next) {
       //do wee need a refresh token?
 }
 
-module.exports = { hashPersonPassword, authToken, refreshToken }
+module.exports = { hashUserPassword, authToken, refreshToken }

@@ -1,19 +1,19 @@
 const bcrypt = require('bcrypt')
-const Person = require('../models/Person')
+const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
 exports.login = (async (req, res) => {
     //compare email and password
 
-    const personEmail = req.body.email
+    const userEmail = req.body.email
     let found = ''
     const password = req.body.password
 
     if (!req.body.email || !req.body.password) return res.json('Email/Password Required')
 
     try {
-        found = await Person.findOne({ email: personEmail })
+        found = await User.findOne({ email: userEmail })
         if (!await bcrypt.compare(password, found.password)) {
             return res.status(401).send('Wrong Password')
         }
@@ -27,11 +27,11 @@ exports.login = (async (req, res) => {
         password: found.password,
     }
 
-    const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '1h'})
-    // const personToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '5s'})
-    res.json({accessToken: personToken})
+    const userToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '24h'})
+    // const userToken = jwt.sign(found, process.env.ACCESS_TOKEN_KEY, {expiresIn: '5s'})
+    res.json({accessToken: userToken})
 })
 
 exports.logout = (req, res) => {
-    // basically what we want is to disable personToken
+    // basically what we want is to disable userToken
 }

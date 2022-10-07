@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB Schema
-const personSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -10,7 +10,7 @@ const personSchema = mongoose.Schema({
         type: String,
         required: true,
         // unique: [true, "email is already taken"],
-        unique: [true, 'email exisst'],
+        unique: [true, 'email exist'],
         lowercase: true,
         validate: {
             validator: function(v){
@@ -28,4 +28,4 @@ const personSchema = mongoose.Schema({
 
 // this line is necessary
 // everytime we wanna use it we call 'Person'
-module.exports = mongoose.model('Person', personSchema);
+module.exports = mongoose.model('User', userSchema);

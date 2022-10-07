@@ -2,15 +2,15 @@
 // const app = express();
 const bcrypt = require('bcrypt');
 
-const Person = require('../models/Person');
+const User = require('../models/User');
 
 //app.use(express.json())
 
-// get all Person
-exports.getAllPerson = (async (req, res) => {
+// get all User
+exports.getAllUser = (async (req, res) => {
 
     try {
-        const result = await Person.find()
+        const result = await User.find()
         res.result = result
         res.json(result)
 
@@ -19,11 +19,11 @@ exports.getAllPerson = (async (req, res) => {
     }
 });
 
-exports.getAllPersonAuth = (async (req, res) => {
-    console.log(req.person);
-    
+exports.getAllUserAuth = (async (req, res) => {
+    console.log(req.user);
+
     try {
-        const result = await Person.find()
+        const result = await User.find()
         res.result = result
         res.json(result)
 
@@ -33,12 +33,12 @@ exports.getAllPersonAuth = (async (req, res) => {
 });
 
 //get by id
-exports.getByIdPerson = (async (req, res) => {
-    const person_id = req.params.id
+exports.getByIdUser = (async (req, res) => {
+    const user_id = req.params.id
 
     try {
-        const found = await Person.findById(person_id)
-        if (!found) return res.send('No person found')
+        const found = await User.findById(user_id)
+        if (!found) return res.send('No user found')
         res.send(found)
     } catch (error) {
         res.send(error.message)
@@ -46,13 +46,10 @@ exports.getByIdPerson = (async (req, res) => {
 })
 
 //post
-exports.postPerson = (async (req, res) => {
+exports.postUser = (async (req, res) => {
 
-    //const salt = await bcrypt.genSalt()
-    // const password = req.body.password
-    // const hashedPassword = await bcrypt.hash(password, 5)
-
-    const postPerson = new Person({
+    let savedUser
+    const postUser = new User({
         name: req.body.name,
         email: req.body.email,
         //password: hashedPassword
@@ -60,16 +57,22 @@ exports.postPerson = (async (req, res) => {
     })
 
     try {
-        const savedPerson = await postPerson.save();
-        res.json(savedPerson);
+        savedUser = await postUser.save();
     } catch (error) {
-        res.json(`${error.keyValue.email} already exist`)
+        return res.json(`${error.keyValue.email} already exist`)
     }
+
+    const userObject = {
+        name: savedUser.name,
+        email: savedUser.email
+    }
+
+    res.json(userObject)
 
 })
 
 // patch
-exports.editPerson = (async (req, res) => {
+exports.editUser = (async (req, res) => {
 
     let hashedPassword;
     if (!req.body.password) {
@@ -80,15 +83,15 @@ exports.editPerson = (async (req, res) => {
         hashedPassword = await bcrypt.hash(password, salt)
     }
 
-    const person_id = req.params.id
-    const editPerson = {
+    const user_id = req.params.id
+    const editUser = {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword
     }
 
     try {
-        const editedResult = await Person.findByIdAndUpdate(person_id, editPerson, { new: true })
+        const editedResult = await User.findByIdAndUpdate(user_id, editUser, { new: true })
         res.send(editedResult)
 
     } catch (error) {
@@ -98,11 +101,11 @@ exports.editPerson = (async (req, res) => {
 })
 
 exports.findByIdAndDelete = (async (req, res) => {
-    const person_id = req.params.id
+    const user_id = req.params.id
 
     try {
-        const deleted = await Person.findByIdAndDelete(person_id)
-        res.send(`This person is deleted "${deleted.name}"`)
+        const deleted = await User.findByIdAndDelete(user_id)
+        res.send(`This user is deleted "${deleted.name}"`)
     } catch (error) {
         res.send(error.message)
     }
@@ -111,7 +114,7 @@ exports.findByIdAndDelete = (async (req, res) => {
 
 exports.deleteAll = (async (req, res) => {
     try {
-        const deleted = await Person.deleteMany()
+        const deleted = await User.deleteMany()
         res.send(deleted)
     } catch (error) {
         res.send(error.message)

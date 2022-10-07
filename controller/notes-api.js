@@ -15,12 +15,11 @@ exports.getAllNotes = (async (req, res, next) => {
         console.log(error.message);
     }
 });
-const userId1 = 'this user id is temporary'
+
 //post
 exports.postNotes = (async (req, res) => {
 
     const postNotes = new Notes({
-        userId: userId1,
         title: req.body.title,
         description: req.body.description
     })

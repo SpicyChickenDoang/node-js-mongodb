@@ -1,4 +1,4 @@
-GET http://localhost:8080/notes
+GET http://localhost:8080/home
 
 ###
 GET http://localhost:8080/notes/63346574d364ada37ccd5006
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 ###
 
-GET   http://localhost:8080/person
+GET   http://localhost:8080/user
 
 
 ###
@@ -36,9 +36,9 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-    "name": "Harrison Ford",
-    "email": "harrison@gmail.com",
-    "password": "uniqlo"
+    "name": "Kylo Ren",
+    "email": "kyloren@dankside.com",
+    "password": "totest123"
 }
 
 ###
@@ -46,26 +46,25 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email": "letdous@gmail.com",
+    "email": "kyloren@dankside.com",
     "password": "totest123"
 }
 
 ###
-
 POST http://localhost:8080/postNotesById
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcnJpc29uQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJGM4ZHc2Z2tpNUdZdlFTUkN1RnY5Ny5zbFQwdU44MDF5RzdtZm14Q1RTZ2FXWFFtRHoxR0syIiwiaWF0IjoxNjY0OTg5OTY2LCJleHAiOjE2NjQ5OTA4NjZ9.iOgdlG_CGjcs3xMoSq3Jx8yMdZFDy6jJv_6NAL48jc8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUxNDUxMTQsImV4cCI6MTY2NTIzMTUxNH0.XOLwmSe0nljE64XTiSIEthzAMNc-c7T_9C_a09butvw
 Content-Type: application/json
 
 {
-    "title": "The future of Ford vs Tesla",
-    "description": "the future is still a long way to go, there's no need to act upon it"
+    "title": "Kylo Sith",
+    "description": "The OG sith grandson"
 }
 
 
 ###
 
-GET http://localhost:8080/viewNotesById
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxldGRvdXNAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAka0pMVWhZbGxjcFdmTmRwZm5DV2RXLjBURm9ZQzhzbFhTcHhYMkd0dzhBclVGZmNPbmZPVXEiLCJpYXQiOjE2NjQ5OTE0MTcsImV4cCI6MTY2NDk5NTAxN30.wN0EZt_9Hl0vjWa-etVlGPE9S_GXmehgSbzHwRZTDvI
+GET http://localhost:8080/viewNotesByUserId
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUxNDUxMTQsImV4cCI6MTY2NTIzMTUxNH0.XOLwmSe0nljE64XTiSIEthzAMNc-c7T_9C_a09butvw
 
 
 //most testing are done using postman, so this file isn't always up to date
