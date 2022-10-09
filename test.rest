@@ -36,8 +36,8 @@ POST http://localhost:8080/signup
 Content-Type: application/json
 
 {
-    "name": "Kylo Ren",
-    "email": "kyloren@dankside.com",
+    "name": "Darth Vader",
+    "email": "darhvader@dankside.com",
     "password": "totest123"
 }
 
@@ -46,25 +46,39 @@ POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "email": "kyloren@dankside.com",
+    "email": "darhvader@dankside.com",
     "password": "totest123"
 }
 
 ###
 POST http://localhost:8080/postNotesById
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUxNDUxMTQsImV4cCI6MTY2NTIzMTUxNH0.XOLwmSe0nljE64XTiSIEthzAMNc-c7T_9C_a09butvw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhcmh2YWRlckBkYW5rc2lkZS5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRLcEszQXUxTWZISHlsT2xweTN0UWNPL29rbE9Bd0lpUTM2WHNtZHdOU0pYVDE0R3pEb3lnQyIsImlhdCI6MTY2NTI1MTc4NiwiZXhwIjoxNjY1MzM4MTg2fQ.KhUVK-56cAuKgvPeq4SA7aEt8xe6mlBKYquK-4Ed3l8
 Content-Type: application/json
 
 {
-    "title": "Kylo Sith",
-    "description": "The OG sith grandson"
+    "title": "Darth Vader",
+    "description": "The OG sith master"
 }
 
 
 ###
 
 GET http://localhost:8080/viewNotesByUserId
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUxNDUxMTQsImV4cCI6MTY2NTIzMTUxNH0.XOLwmSe0nljE64XTiSIEthzAMNc-c7T_9C_a09butvw
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhcmh2YWRlckBkYW5rc2lkZS5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRLcEszQXUxTWZISHlsT2xweTN0UWNPL29rbE9Bd0lpUTM2WHNtZHdOU0pYVDE0R3pEb3lnQyIsImlhdCI6MTY2NTI1MTc4NiwiZXhwIjoxNjY1MzM4MTg2fQ.KhUVK-56cAuKgvPeq4SA7aEt8xe6mlBKYquK-4Ed3l8
 
+###
+
+PATCH http://localhost:8080/editById/6340194c8291c03f866ed3cf
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUyNTA4MTMsImV4cCI6MTY2NTMzNzIxM30.tsUhfaBdJ2yLget4mrWNTjXUAhc0y2mv421dYnZ1kyI
+Content-Type: application/json
+
+{
+    "title": "Just updated1",
+    "description": "just fully updated"
+}
+
+###
+DELETE http://localhost:8080/deleteById/6340194c8291c03f866ed3cf
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imt5bG9yZW5AZGFua3NpZGUuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUGVKaXNOYUVxOWw5enpscEtiZXZYT1hYV2FHTXFFMFBoTjRNYVJ0T3c5aWMzTzZ0QW5vdFMiLCJpYXQiOjE2NjUyNTA4MTMsImV4cCI6MTY2NTMzNzIxM30.tsUhfaBdJ2yLget4mrWNTjXUAhc0y2mv421dYnZ1kyI
 
 //most testing are done using postman, so this file isn't always up to date

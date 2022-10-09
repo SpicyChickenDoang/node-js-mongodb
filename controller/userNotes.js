@@ -1,4 +1,5 @@
 const express = require('express');
+const { findByIdAndUpdate } = require('../models/Notes');
 const app = express();
 // const router = express.Router();
 
@@ -41,6 +42,7 @@ exports.viewNotesByUserId = async (req, res) => {
     for (let i = 0; i < resultNotes.length; i++) {
 
         fullNotes.push({
+            id: resultNotes[i].id,
             title: resultNotes[i].title,
             desc: resultNotes[i].description
         })
@@ -82,6 +84,8 @@ exports.viewAllNotes = async (req, res) => {
     //     console.log(allNotes);
     // })
 
+    //if(allUser.length > 100) allUser.length = 100
+
     for (let i = 0; i < allUser.length; i++) {
         for (let j = 0; j < allNotes.length; j++) {
             if (allUser[i].email == allNotes[j].userEmail) {
@@ -96,5 +100,44 @@ exports.viewAllNotes = async (req, res) => {
     }
 
     res.json(obj)
-    
+
+}
+
+exports.editByNotesId = async (req, res) => {
+    const notes_id = req.params.notesId
+    const userEmail = req.user.email
+    let result = 0
+
+    const obj = {
+        title: req.body.title,
+        description: req.body.description
+    }
+
+    try {
+        result = await Notes.findById(notes_id)
+        if(userEmail != result.userEmail) return res.json('Not your Notes')
+        result = await Notes.findByIdAndUpdate(notes_id, obj, { new: true })
+    } catch (error) {
+        return res.json('Update Failed, Try Again')
+    }
+
+    res.json(result)
+
+
+}
+
+exports.deleteByNotesId = async (req, res) => {
+    const notes_id = req.params.notesId
+    const userEmail = req.user.email
+    let result = 0
+
+    try {
+        result = await Notes.findById(notes_id)
+        if(userEmail != result.userEmail) return res.json('Not your Notes')
+        result = await Notes.findByIdAndDelete(notes_id)
+    } catch (error) {
+        return res.json('Deletion Failed, Try Again')
+    }
+
+    res.json(`${result.title} is deleted`)
 }
