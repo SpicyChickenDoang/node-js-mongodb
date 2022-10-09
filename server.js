@@ -2,13 +2,15 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
+const User = require('./models/User')
+const Notes = require('./models/Notes')
 
 
 // the middleware below is used mostly for POST/PUT so that it
 // will parse/change incoming req.body to the needed json format
 // alternatively we can use 'npm install body-parser' and then import them
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 //MIDDLEWARE
 // app.use('/', ()=>{
@@ -24,8 +26,6 @@ app.use('/', routes)
 //     console.log('undefined');
 //     return 0;
 // })
-
-
 
 
 // connect to MongoDB
