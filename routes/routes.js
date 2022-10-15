@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {hashUserPassword, authToken} = require('../controller/hashUser')
+const {hashUserPassword, authToken, logoutToken} = require('../controller/hashUser')
 
 const loginoutController = require('../controller/loginout.js')
 const notesController = require('../controller/notes-api.js');
@@ -9,15 +9,15 @@ const userController = require('../controller/user-api.js');
 const userNoteController = require('../controller/userNotes.js');
 
 
+router.post('/signup', hashUserPassword, userController.postUser)
 router.post('/login', loginoutController.login)
-router.post('/logout', loginoutController.logout)
+router.post('/logout', logoutToken, loginoutController.logout)
 
 /* similiar to that of a home page of twitter
 where we can see everyones thoughts
 */
 router.get('/home', userNoteController.viewAllNotes)
 // create a user
-router.post('/signup', hashUserPassword, userController.postUser)
 
 // anything with auth jwt/basically we need to login first
 router.get('/userAuth', authToken, userController.getAllUserAuth)

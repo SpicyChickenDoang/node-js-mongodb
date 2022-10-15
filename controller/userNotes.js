@@ -8,6 +8,48 @@ const User = require('../models/User');
 
 app.use(express.json())
 
+exports.viewAllNotes = async (req, res) => {
+
+    let allNotes = []
+    let allUser = []
+    let obj = []
+
+    try {
+        allUser = await User.find()//.sort({'date': -1}).limit(10)
+        allNotes = await Notes.find()//.sort({'date': -1}).limit(100)
+    } catch (error) {
+        res.json(error.message)
+    } finally {
+        console.log('finally will always run');
+    }
+
+    // await User.find().then(res => allUser = res)
+    // await Notes.find().then(res => allNotes = res)
+
+    // allUser = await User.find()
+    // allNotes = await Notes.find()
+    // Promise.allSettled([allNotes, allUser]).then(([res,res2]) =>{
+    //     console.log(allUser);
+    //     console.log(allNotes);
+    // })
+
+    for (let i = 0; i < allUser.length; i++) {
+        for (let j = 0; j < allNotes.length; j++) {
+            if (allUser[i].email == allNotes[j].userEmail) {
+                obj.push({
+                    name: allUser[i].name,
+                    // email: allUser[i].email,
+                    title: allNotes[j].title,
+                    desc: allNotes[j].description
+                })
+            }
+        }
+    }
+
+    res.json(obj)
+
+}
+
 exports.postNotesByUserId = async (req, res) => {
 
     const postNotes = new Notes({
@@ -56,48 +98,6 @@ exports.viewNotesByUserId = async (req, res) => {
     }
 
     res.status(200).json(userNotes)
-
-}
-
-exports.viewAllNotes = async (req, res) => {
-
-    let allNotes = []
-    let allUser = []
-    let obj = []
-
-    try {
-        allUser = await User.find().sort({'date': -1}).limit(10)
-        allNotes = await Notes.find().sort({'date': -1}).limit(100)
-    } catch (error) {
-        res.json(error.message)
-    } finally {
-        console.log('finally will always run');
-    }
-
-    // await User.find().then(res => allUser = res)
-    // await Notes.find().then(res => allNotes = res)
-
-    // allUser = await User.find()
-    // allNotes = await Notes.find()
-    // Promise.allSettled([allNotes, allUser]).then(([res,res2]) =>{
-    //     console.log(allUser);
-    //     console.log(allNotes);
-    // })
-
-    for (let i = 0; i < allUser.length; i++) {
-        for (let j = 0; j < allNotes.length; j++) {
-            if (allUser[i].email == allNotes[j].userEmail) {
-                obj.push({
-                    name: allUser[i].name,
-                    // email: allUser[i].email,
-                    title: allNotes[j].title,
-                    desc: allNotes[j].description
-                })
-            }
-        }
-    }
-
-    res.json(obj)
 
 }
 

@@ -33,5 +33,5 @@ exports.login = (async (req, res) => {
 })
 
 exports.logout = (req, res) => {
-    // basically what we want is to disable userToken
+    res.json('logged out')
 }
