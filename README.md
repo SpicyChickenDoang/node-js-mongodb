@@ -44,7 +44,7 @@ body = {
   password: "your password"
 }
 ```
-Login will respond with an ACESS_TOKEN that is needed for further routes
+Login will respond with an ACCESS_TOKEN that is needed for further routes
 
 ### 6. Post Notes
 ```
