@@ -6,45 +6,6 @@ const User = require('../models/User');
 
 //app.use(express.json())
 
-// get all User
-exports.getAllUser = (async (req, res) => {
-
-    try {
-        const result = await User.find()
-        res.result = result
-        res.json(result)
-
-    } catch (error) {
-        res.send(error.message)
-    }
-});
-
-exports.getAllUserAuth = (async (req, res) => {
-    console.log(req.user);
-
-    try {
-        const result = await User.find()
-        res.result = result
-        res.json(result)
-
-    } catch (error) {
-        res.send(error.message)
-    }
-});
-
-//get by id
-exports.getByIdUser = (async (req, res) => {
-    const user_id = req.params.id
-
-    try {
-        const found = await User.findById(user_id)
-        if (!found) return res.send('No user found')
-        res.send(found)
-    } catch (error) {
-        res.send(error.message)
-    }
-})
-
 //post
 exports.postUser = (async (req, res) => {
 
@@ -100,25 +61,68 @@ exports.editUser = (async (req, res) => {
 
 })
 
-exports.findByIdAndDelete = (async (req, res) => {
-    const user_id = req.params.id
+// get all User
+// exports.getAllUser = (async (req, res) => {
 
-    try {
-        const deleted = await User.findByIdAndDelete(user_id)
-        res.send(`This user is deleted "${deleted.name}"`)
-    } catch (error) {
-        res.send(error.message)
-    }
+//     try {
+//         const result = await User.find()
+//         res.result = result
+//         res.json(result)
 
-})
+//     } catch (error) {
+//         res.send(error.message)
+//     }
+// });
 
-exports.deleteAll = (async (req, res) => {
-    try {
-        const deleted = await User.deleteMany()
-        res.send(deleted)
-    } catch (error) {
-        res.send(error.message)
-    }
-})
+// exports.getAllUserAuth = (async (req, res) => {
+//     console.log(req.user);
+
+//     try {
+//         const result = await User.find()
+//         res.result = result
+//         res.json(result)
+
+//     } catch (error) {
+//         res.send(error.message)
+//     }
+// });
+
+//get by id
+// exports.getByIdUser = (async (req, res) => {
+//     const user_id = req.params.id
+
+//     try {
+//         const found = await User.findById(user_id)
+//         if (!found) return res.send('No user found')
+//         res.send(found)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
+// })
+
+
+
+// exports.findByIdAndDelete = (async (req, res) => {
+//     const user_id = req.params.id
+
+//     try {
+//         const deleted = await User.findByIdAndDelete(user_id)
+//         res.send(`This user is deleted "${deleted.name}"`)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
+
+// })
+
+
+
+// exports.deleteAll = (async (req, res) => {
+//     try {
+//         const deleted = await User.deleteMany()
+//         res.send(deleted)
+//     } catch (error) {
+//         res.send(error.message)
+//     }
+// })
 
 
