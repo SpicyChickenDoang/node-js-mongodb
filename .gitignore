@@ -4,4 +4,4 @@ node_modules/
 index.js
 notmine.md
 test.rest
-/controller/notes-api.js
+controller/notes-api.js

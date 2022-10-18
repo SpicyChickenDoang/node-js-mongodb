@@ -43,8 +43,4 @@ router.delete('/user/deleteAll', userController.deleteAll)
 */
 
 
-
-
-
-
 module.exports = router;
