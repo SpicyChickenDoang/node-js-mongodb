@@ -8,7 +8,7 @@ const notesController = require('../controller/notes-api.js');
 const userController = require('../controller/user-api.js');
 const userNoteController = require('../controller/userNotes.js');
 
-
+// create a user
 router.post('/signup', hashUserPassword, userController.postUser)
 router.post('/login', loginoutController.login)
 router.post('/logout', logoutToken, loginoutController.logout)
@@ -17,7 +17,7 @@ router.post('/logout', logoutToken, loginoutController.logout)
 where we can see everyones thoughts
 */
 router.get('/home', userNoteController.viewAllNotes)
-// create a user
+
 
 // anything with auth jwt/basically we need to login first
 // router.get('/userAuth', authToken, userController.getAllUserAuth)
