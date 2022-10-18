@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { hashUserPassword, authToken, logoutToken } = require('../controller/hashUser')
+const { hashUserPassword, authToken, logoutToken } = require('../middleware/hashUser')
 
 const loginoutController = require('../controller/loginout.js')
 const notesController = require('../controller/notes-api.js');
