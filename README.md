@@ -1,5 +1,5 @@
 # nodejs-mongodb-jwt
-### API using nodeJS, express, bcrypt. Using MongoDB as the database and JWT for authorization
+### API using nodeJS, express, bcrypt, Redis. Using MongoDB as the database and JWT for authorization
 
 ### 1. Project Setup
 ```

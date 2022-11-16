@@ -26,6 +26,5 @@ const userSchema = mongoose.Schema({
     }
 }, {timestamps: true});
 
-// this line is necessary
 // everytime we wanna use it we call 'Person'
 module.exports = mongoose.model('User', userSchema);

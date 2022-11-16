@@ -12,7 +12,7 @@ exports.viewAllNotes = async (req, res) => {
 
     let allNotes = []
     let allUser = []
-    let obj = []
+    let fullResult = []
 
     try {
         allUser = await User.find()//.sort({'date': -1}).limit(10)
@@ -23,8 +23,8 @@ exports.viewAllNotes = async (req, res) => {
         console.log('finally will always run');
     }
 
-    // await User.find().then(res => allUser = res)
-    // await Notes.find().then(res => allNotes = res)
+    // await User.find().then(res => allUser = res).catch(err) => res.json(err.message)
+    // await Notes.find().then(res => allNotes = res).catch(err) => res.json(err.message)
 
     // allUser = await User.find()
     // allNotes = await Notes.find()
@@ -36,7 +36,7 @@ exports.viewAllNotes = async (req, res) => {
     for (let i = 0; i < allUser.length; i++) {
         for (let j = 0; j < allNotes.length; j++) {
             if (allUser[i].email == allNotes[j].userEmail) {
-                obj.push({
+                fullResult.push({
                     name: allUser[i].name,
                     // email: allUser[i].email,
                     title: allNotes[j].title,
@@ -46,7 +46,7 @@ exports.viewAllNotes = async (req, res) => {
         }
     }
 
-    res.json(obj)
+    res.json(fullResult)
 
 }
 
@@ -82,13 +82,11 @@ exports.viewNotesByUserId = async (req, res) => {
     }
 
     for (let i = 0; i < resultNotes.length; i++) {
-
         fullNotes.push({
             id: resultNotes[i].id,
             title: resultNotes[i].title,
             desc: resultNotes[i].description
         })
-
     }
 
     const userNotes = {
@@ -97,7 +95,11 @@ exports.viewNotesByUserId = async (req, res) => {
         notes: fullNotes
     }
 
-    res.status(200).json(userNotes)
+    res.status(200).json({
+        status: 201,
+        message: 'OK',
+        data: userNotes
+    })
 
 }
 
@@ -120,8 +122,6 @@ exports.editByNotesId = async (req, res) => {
     }
 
     res.json(result)
-
-
 }
 
 exports.deleteByNotesId = async (req, res) => {

@@ -27,6 +27,8 @@ router.patch('/user/edit/:id', userController.editUser)
 router.delete('/deleteById/:notesId', authToken, userNoteController.deleteByNotesId)
 router.patch('/editById/:notesId', authToken, userNoteController.editByNotesId)
 
+router.post('/testImages', userNoteController.reqResImages)
+
 
 /** 
 Many of these routes are disabled because of updated routes are the ones above

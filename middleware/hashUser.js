@@ -26,7 +26,7 @@ async function authToken(req, res, next) {
       // const token = authHeader && authHeader.split(' ')[1]
       // if(token == null) return res.send('no good token')
 
-      if (!authHeader) return res.send('no good token')
+      if (!authHeader) return res.json('no good token')
       const token = authHeader.split(' ')[1]
 
       const findInvalidToken = invalidToken.find(el => el == token)
@@ -44,8 +44,6 @@ async function authToken(req, res, next) {
 
       try {
             const userProfile = jwt.verify(token, process.env.ACCESS_TOKEN_KEY)
-            // const testDecode = jwt.decode(token, {header: true})
-            // console.log('TD: ', testDecode);
             req.user = userProfile
       } catch (error) {
             return res.json('error no good token')
@@ -56,8 +54,8 @@ async function authToken(req, res, next) {
 }
 
 function logoutToken(req, res, next) {
-      //simple logout function without redis
 
+      // simple logout function without redis
       let token = req.headers['authorization']
       token = token.split(' ')[1]
       invalidToken.push(token)

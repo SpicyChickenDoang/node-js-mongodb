@@ -15,6 +15,5 @@ const noteSchema = mongoose.Schema({
     }
 },{timestamps: true});
 
-// this line is necessary
 // everytime we wanna use it we call 'Notes'
 module.exports = mongoose.model('Notes', noteSchema);
